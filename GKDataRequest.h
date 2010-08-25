@@ -5,6 +5,8 @@
 //  Created by Gaurav Khanna on 7/14/10.
 //
 
+#ifdef GKDATAREQUEST_NEEDED
+
 #import <Foundation/Foundation.h>
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
@@ -41,3 +43,5 @@ typedef void (^GKDataRequestBlock)(BOOL completion);
 - (id)attributeStringFromXPathQuery:(NSString *)query;
 
 @end
+
+#endif

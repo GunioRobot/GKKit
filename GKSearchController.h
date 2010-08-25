@@ -5,6 +5,8 @@
 //  Created by Gaurav Khanna on 7/14/10.
 //
 
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+
 #import <UIKit/UIKit.h>
 #import "NSObject+GKAdditions.h"
 #import "common.h"
@@ -33,3 +35,5 @@
 - (void)searchController:(GKSearchController *)controller shouldStartSearch:(NSString *)searchText;
 
 @end
+
+#endif

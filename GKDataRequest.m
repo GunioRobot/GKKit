@@ -5,6 +5,8 @@
 //  Created by Gaurav Khanna on 7/14/10.
 //
 
+#ifdef GKDATAREQUEST_NEEDED
+
 #import "GKDataRequest.h"
 
 @implementation GKDataRequest
@@ -180,3 +182,5 @@ xmlXPathObjectPtr xmlXPathObjectFromEvalOfQuery(NSString *query, xmlXPathContext
 }
 
 @end
+
+#endif

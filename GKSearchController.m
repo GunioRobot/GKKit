@@ -5,6 +5,8 @@
 //  Created by Gaurav Khanna on 7/14/10.
 //
 
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+
 #import "GKSearchController.h"
 
 typedef enum {
@@ -124,4 +126,4 @@ typedef enum {
 
 @end
 
-
+#endif
