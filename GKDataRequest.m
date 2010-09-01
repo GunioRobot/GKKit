@@ -290,11 +290,11 @@ NSString *PerformHTMLXPathExtraction(NSData *document, NSString *query) {
 // The delegate can then either restart the request ([request retryUsingSuppliedCredentials]) once credentials have been set
 // or cancel it ([request cancelAuthentication])
 - (void)authenticationNeededForRequest:(ASIHTTPRequest *)request {
-    DLogFunc();
+    
 }
 
 - (void)proxyAuthenticationNeededForRequest:(ASIHTTPRequest *)request {
-    DLogFunc();
+    
 }
 
 
