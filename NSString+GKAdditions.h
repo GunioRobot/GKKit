@@ -15,5 +15,6 @@
 - (id)trim;
 - (id)decodeAllPercentEscapes;
 - (id)decodeAllAmpersandEscapes;
+- (BOOL)isEmpty;
 
 @end
