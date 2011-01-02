@@ -2,9 +2,9 @@
     #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 
         #define UIViewFrameChangeValue( view, key, value) \
-            CGRect frame = [view frame]; \
-            key = value; \
-            [view setFrame:frame]
+            CGRect view ## Frame = view.frame; \
+            view ## Frame.key = value; \
+            [view setFrame:view ## Frame]
 
         #define UIApplicationDirectory \
             ^ { \
