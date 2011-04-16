@@ -22,11 +22,6 @@
     return self;
 }
 
-#define UIViewFrameChangeValue( view, key, value) \
-    CGRect frame = [view frame]; \
-    key = value; \
-    [view setFrame:frame]
-
 - (void)activate {
     self.backgroundColor = [UIColor whiteColor];
     _activityView.center = self.center;
