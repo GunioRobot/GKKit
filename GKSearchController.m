@@ -36,11 +36,6 @@ typedef enum {
     return self;
 }
 
-#define UIViewFrameChangeValue( view, key, value) \
-    CGRect frame = [view frame]; \
-    key = value; \
-    [view setFrame:frame]
-
 - (void)setSearchLoadingState:(GKSearchDisplayState)state {
     switch(state) {
         case GKSearchDisplayStateLoading:
