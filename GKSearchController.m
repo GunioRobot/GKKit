@@ -41,7 +41,7 @@ typedef enum {
         case GKSearchDisplayStateLoading:
             _searchLoadingView.backgroundColor = [UIColor whiteColor];
             _activityView.center = _searchLoadingView.center;
-            UIViewFrameChangeValue(_activityView, frame.origin.y, 11.0);
+            UIViewFrameChangeValue(_activityView, origin.y, 11.0);
             [_activityView startAnimating];
             break;
             
