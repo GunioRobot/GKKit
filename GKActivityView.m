@@ -25,7 +25,7 @@
 - (void)activate {
     self.backgroundColor = [UIColor whiteColor];
     _activityView.center = self.center;
-    UIViewFrameChangeValue(_activityView, frame.origin.y, 11.0);
+    UIViewFrameChangeValue(_activityView, origin.y, 11.0);
     [_activityView startAnimating];
 }
 
