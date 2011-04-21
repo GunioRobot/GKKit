@@ -24,7 +24,7 @@ NSString * const GKEditorEndEditingNotification = @"GKEditorEndEditingNotificati
 - (void)adoptEditorProtocol {
     // start receiving notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingNotification:) name:GKEditorStartEditingNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingNotification:) name:GKEditorStartEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingNotification:) name:GKEditorEndEditingNotification object:nil];
 }
 
 - (void)editingNotification:(NSNotification *)notification {
