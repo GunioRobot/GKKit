@@ -17,4 +17,6 @@
     UIView *_contentView;
 }
 
+@property (nonatomic, retain) UIView *contentView;
+
 @end

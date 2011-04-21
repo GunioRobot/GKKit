@@ -10,6 +10,8 @@
 
 @implementation GKRoundedPageView
 
+@synthesize contentView = _contentView;
+
 + (UIView *)hitTest:(UIView *)view point:(CGPoint)point withEvent:(UIEvent *)event {
     for (UIView *subview in view.subviews) {
         if ([subview pointInside:[view convertPoint:point toView:subview] withEvent:event]) {
