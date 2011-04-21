@@ -10,5 +10,5 @@
     #import "NSDate+GKAdditions.h"
     #import "NSObject+GKAdditions.h"
     #import "NSString+GKAdditions.h"
-    #import "View+GKAdditions.h"
+    #import "GKView+GKAdditions.h"
 #endif
