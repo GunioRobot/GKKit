@@ -3,21 +3,40 @@
 //  GHome
 //
 //  Created by Gaurav Khanna on 4/16/11.
-//  Copyright 2011 GK Apps. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
 
-// Setup
-//
-// 1. In Object's init, call 
-//   [self adoptEditingProtocol];
-// 2. Create method 
-//   "- (void)setEditing:(BOOL)editing animated:(BOOL)animated"
-//   in class
-// 3. Call [object startEditing] from any object to start editing
+/*
+## Template MyClass
+@implementation MyClass
+
+## In Object's init method
+- (void)init {
+    if ((self = [super init])) {
+        [self adoptEditingProtocol]; // Call this
+    }
+    return self;
+}
+
+## Declare this method to receive editing messages
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    if (editing) {
+    
+    } else {
+    
+    }
+}
+
+## Send this message or endEditingAnimated: to send editing messages
+- (void)buttonPress:(id)sender {
+    [sender startEditingAnimated:YES];
+}
+
+@end
+*/
 
 extern NSString * const GKEditorStartEditingNotification;
 extern NSString * const GKEditorEndEditingNotification;
@@ -29,8 +48,8 @@ extern NSString * const GKEditorEndEditingNotification;
 @end
 
 @interface NSObject (GKEditor)
+
 - (void)adoptEditorProtocol;
-- (void)editingNotification:(NSNotification *)notification;
 - (void)startEditingAnimated:(BOOL)animated;
 - (void)endEditingAnimated:(BOOL)animated;
 
