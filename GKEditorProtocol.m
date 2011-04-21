@@ -28,17 +28,19 @@ NSString * const GKEditorEndEditingNotification = @"GKEditorEndEditingNotificati
 }
 
 - (void)editingNotification:(NSNotification *)notification {
-    if ([notification.name isEqualToString:GKEditorStartEditingNotification]) {
-        if ([self conformsToProtocol:@protocol(GKEditorProtocol)])
-            [(id<GKEditorProtocol>)self setEditing:YES animated:[notification.object boolValue]];
-    } else {
-        if ([self conformsToProtocol:@protocol(GKEditorProtocol)])
-            [(id<GKEditorProtocol>)self setEditing:NO animated:[notification.object boolValue]];
-    }
+    if ([self conformsToProtocol:@protocol(GKEditorProtocol)] && [notification.name isEqualToString:GKEditorStartEditingNotification])
+        [(id<GKEditorProtocol>)self setEditing:YES animated:[notification.object boolValue]];
+    else
+        [(id<GKEditorProtocol>)self setEditing:NO animated:[notification.object boolValue]];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-    
+    if (![self isMemberOfClass:[NSObject class]]) {
+        struct objc_super s_struct = { self, [self superclass] };
+        id s = objc_msgSendSuper( &s_struct, @selector(self));
+        if (s && [s respondsToSelector:@selector(setEditing:animated:)])
+            [s setEditing:editing animated:animated];
+    }
 }
 
 - (void)startEditingAnimated:(BOOL)animated {
