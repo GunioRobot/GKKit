@@ -17,7 +17,9 @@
 
     #ifdef DLOG
         #import <Foundation/Foundation.h>
-        /*void DebugLog(NSString *format, ...) {
+#pragma mark - Object Logging Methods
+
+        /*void DLog(NSString *format, ...) {
             va_list ap;
             va_start (ap, format);
             if (![format hasSuffix: @"\n"])
@@ -27,6 +29,7 @@
             fprintf(stderr,"%s",[body UTF8String]);
             [body release];
         }*/
+        
         #ifndef DLOG_PREFIX
             #define DLOG_PREFIX DL
         #endif
@@ -52,8 +55,7 @@
         #endif
         #define DLogFunc()              NSLog(@"%s:%s:%d;", Q(DLOG_PREFIX), __PRETTY_FUNCTION__, __LINE__)
         
-#pragma mark -
-#pragma mark Class Method Logging
+#pragma mark - Class Method Logging
         
         #define DLogvoid()
         #define DLogid(Object)      NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #Object , Object)

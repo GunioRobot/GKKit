@@ -12,7 +12,6 @@ NSString * const GKEditorEndEditingNotification = @"GKEditorEndEditingNotificati
 
 @interface NSObject (GKEditorPrivate) 
 - (void)gk_editingNotification:(NSNotification *)notification;
-- (id)gk_super;
 @end
 
 @implementation NSObject (GKEditor)
@@ -23,27 +22,24 @@ NSString * const GKEditorEndEditingNotification = @"GKEditorEndEditingNotificati
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gk_editingNotification:) name:GKEditorEndEditingNotification object:nil];
 }
 
-// Process received notification
+// Process received notification, call super, call self
 - (void)gk_editingNotification:(NSNotification *)notification {
-    if ([self conformsToProtocol:@protocol(GKEditorProtocol)] && [notification.name isEqualToString:GKEditorStartEditingNotification])
-        [(id<GKEditorProtocol>)self setEditing:YES animated:[notification.object boolValue]];
-    else if ([notification.name isEqualToString:GKEditorEndEditingNotification])
-        [(id<GKEditorProtocol>)self setEditing:NO animated:[notification.object boolValue]];
+    if ([NSStringFromClass([self class]) isEqualToString:@"NSObject"]) return;
+    
+    BOOL editing = [notification.name isEqualToString:GKEditorStartEditingNotification];
+    
+    if (!class_respondsToSelector(class_getSuperclass([self class]), @selector(setEditing:animated:))) return;
+    
+    objc_msgSendSuper(&(struct objc_super){self, class_getSuperclass([self class])}, @selector(setEditing:animated:), editing, [notification.object boolValue]);
+    
+    if (![self conformsToProtocol:@protocol(GKEditorProtocol)]) return;
+
+    [(id<GKEditorProtocol>)self setEditing:editing animated:[notification.object boolValue]];
 }
 
-// If object isn't empty implementation, get super, send message if needed
+// Default implementation doesn't need anything
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-    id s = [self gk_super];
-    if (s && [s respondsToSelector:@selector(setEditing:animated:)])
-            [s setEditing:editing animated:animated];
-}
-
-- (id)gk_super {
-    if (![self isMemberOfClass:[NSObject class]]) {
-        struct objc_super s_struct = { self, [self superclass] };
-        return objc_msgSendSuper( &s_struct, @selector(self));
-    }
-    return nil;
+    
 }
 
 - (void)startEditingAnimated:(BOOL)animated {
