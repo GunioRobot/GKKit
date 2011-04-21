@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface GKRoundedPageView : UIView {
+    @private
     UIView *_contentView;
 }
 

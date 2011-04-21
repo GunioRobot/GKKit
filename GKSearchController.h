@@ -12,6 +12,7 @@
 #import "common.h"
 
 @interface GKSearchController : NSObject <UISearchDisplayDelegate, UISearchBarDelegate> {
+    @private
     UIActivityIndicatorView *_activityView;
     UIView *_searchLoadingView;
     UISearchDisplayController *_controller;

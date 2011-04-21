@@ -10,6 +10,7 @@
 
 
 @interface GKActivityView : UIView {
+    @private
     UIActivityIndicatorView *_activityView;
 }
 
