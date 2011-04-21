@@ -38,9 +38,6 @@
 @end
 */
 
-extern NSString * const GKEditorStartEditingNotification;
-extern NSString * const GKEditorEndEditingNotification;
-
 @protocol GKEditorProtocol <NSObject>
 @required
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated;

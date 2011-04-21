@@ -12,30 +12,38 @@ NSString * const GKEditorEndEditingNotification = @"GKEditorEndEditingNotificati
 
 @interface NSObject (GKEditorPrivate) 
 - (void)gk_editingNotification:(NSNotification *)notification;
+- (id)gk_super;
 @end
 
 @implementation NSObject (GKEditor)
 
+// Add self as observer to notifications, usually during init
 - (void)adoptEditorProtocol {
-    // add self as observer to notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gk_editingNotification:) name:GKEditorStartEditingNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingNotification:) name:GKEditorEndEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gk_editingNotification:) name:GKEditorEndEditingNotification object:nil];
 }
 
+// Process received notification
 - (void)gk_editingNotification:(NSNotification *)notification {
     if ([self conformsToProtocol:@protocol(GKEditorProtocol)] && [notification.name isEqualToString:GKEditorStartEditingNotification])
         [(id<GKEditorProtocol>)self setEditing:YES animated:[notification.object boolValue]];
-    else
+    else if ([notification.name isEqualToString:GKEditorEndEditingNotification])
         [(id<GKEditorProtocol>)self setEditing:NO animated:[notification.object boolValue]];
 }
 
+// If object isn't empty implementation, get super, send message if needed
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    id s = [self gk_super];
+    if (s && [s respondsToSelector:@selector(setEditing:animated:)])
+            [s setEditing:editing animated:animated];
+}
+
+- (id)gk_super {
     if (![self isMemberOfClass:[NSObject class]]) {
         struct objc_super s_struct = { self, [self superclass] };
-        id s = objc_msgSendSuper( &s_struct, @selector(self));
-        if (s && [s respondsToSelector:@selector(setEditing:animated:)])
-            [s setEditing:editing animated:animated];
+        return objc_msgSendSuper( &s_struct, @selector(self));
     }
+    return nil;
 }
 
 - (void)startEditingAnimated:(BOOL)animated {
