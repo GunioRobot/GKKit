@@ -10,8 +10,7 @@
 
 @implementation GKRoundedPageView
 
-@synthesize contentView = _contentView;
-
+/*
 + (UIView *)hitTest:(UIView *)view point:(CGPoint)point withEvent:(UIEvent *)event {
     for (UIView *subview in view.subviews) {
         if ([subview pointInside:[view convertPoint:point toView:subview] withEvent:event]) {
@@ -23,27 +22,30 @@
     }
     return nil;
 }
+*/
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Initialization code
+        
         self.clipsToBounds = NO;
-        self.layer.cornerRadius = 12.0;
+        self.layer.cornerRadius = 10.0;
         self.layer.masksToBounds = YES;
         
         self.layer.shadowOffset = CGSizeMake(0, 0);
         self.layer.shadowRadius = 5;
         self.layer.shadowOpacity = 0.7;
-        self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:12.0].CGPath;
+        self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.layer.cornerRadius].CGPath;
         
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.bounds.size.width, self.bounds.size.height)];
         _contentView.clipsToBounds = YES;
         _contentView.layer.masksToBounds = YES;
+        _contentView.layer.cornerRadius = self.layer.cornerRadius;
         //_contentView.userInteractionEnabled = NO;
         //self.userInteractionEnabled = NO;
         //_contentView.backgroundColor = [UIColor whiteColor];
-        _contentView.layer.cornerRadius = self.layer.cornerRadius;
+        
+
         [self addSubview:_contentView];
         [self bringSubviewToFront:_contentView];
         
@@ -56,7 +58,7 @@
     // Needs to send nil back if point wasn't on a button/switch (any object userInteractionEnabled)
     // Otherwise nil to send the event to the scroll view so the pages are scrollable
     // To do this: It will recurse through all subviews in itself, find any that the point is on and have userInteractionEnabled
-    
+    DLogObject(NSStringFromCGPoint(point));
     UIView *targetView = nil;
     
     for (UIView *subview in _contentView.subviews) {
