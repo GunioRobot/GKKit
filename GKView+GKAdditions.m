@@ -1,11 +1,11 @@
 //
-//  View+GKAdditions.m
+//  GKView+GKAdditions.m
 //  GKKit
 //
 //  Created by Gaurav Khanna on 7/14/10.
 //
 
-#import "View+GKAdditions.h"
+#import "GKView+GKAdditions.h"
 
 @implementation GKView (GKAdditions)
 
