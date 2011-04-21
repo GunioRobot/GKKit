@@ -6,8 +6,11 @@
             view ## Frame.key = value; \
             [view setFrame:view ## Frame]
             
-        #define CGRectRoundFrameValues(frame) \
+        #define CGRectRoundFrameValues( frame) \
             CGRectMake( roundf(frame.origin.x), roundf(frame.origin.y), roundf(frame.size.width), roundf(frame.size.height))
+            
+        #define UIViewFrameRoundValues( view) \
+            [view setFrame:CGRectRoundFrameValues( view.frame)]
 
         #define UIApplicationDirectory \
             ^ { \
