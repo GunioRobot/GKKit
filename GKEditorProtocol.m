@@ -24,15 +24,18 @@ NSString * const GKEditorEndEditingNotification = @"GKEditorEndEditingNotificati
 
 // Process received notification, call super, call self
 - (void)gk_editingNotification:(NSNotification *)notification {
-    if ([NSStringFromClass([self class]) isEqualToString:@"NSObject"]) return;
+    if ([NSStringFromClass([self class]) isEqualToString:@"NSObject"]) 
+        return;
     
     BOOL editing = [notification.name isEqualToString:GKEditorStartEditingNotification];
     
-    if (!class_respondsToSelector(class_getSuperclass([self class]), @selector(setEditing:animated:))) return;
+    if (!class_respondsToSelector(class_getSuperclass([self class]), @selector(setEditing:animated:))) 
+        return;
     
-    objc_msgSendSuper(&(struct objc_super){self, class_getSuperclass([self class])}, @selector(setEditing:animated:), editing, [notification.object boolValue]);
+    NSObjectMessageSendSuper( self, setEditing:animated:, editing, [notification.object boolValue]);
     
-    if (![self conformsToProtocol:@protocol(GKEditorProtocol)]) return;
+    if (![self conformsToProtocol:@protocol(GKEditorProtocol)]) 
+        return;
 
     [(id<GKEditorProtocol>)self setEditing:editing animated:[notification.object boolValue]];
 }
