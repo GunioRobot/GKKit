@@ -6,7 +6,7 @@
         
     #define NSObjectMessageSendSuperSuper(obj, msg, ...) \
         ^{ \
-            return (id)objc_msgSendSuper(&(struct objc_super){obj, class_getSuperclass(class_getSuperclass([obj class])), ## __VA_ARGS__); \
+            return (id)objc_msgSendSuper(&(struct objc_super){obj, class_getSuperclass(class_getSuperclass([obj class]))}, @selector(msg), ## __VA_ARGS__); \
         }()
 
     #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
