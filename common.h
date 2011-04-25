@@ -8,6 +8,9 @@
         ^{ \
             return (id)objc_msgSendSuper(&(struct objc_super){obj, class_getSuperclass(class_getSuperclass([obj class]))}, @selector(msg), ## __VA_ARGS__); \
         }()
+        
+    #define NSDef [NSUserDefaults standardUserDefaults]
+    #define AppDelegate [[UIApplication sharedApplication] delegate]
 
     #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 
