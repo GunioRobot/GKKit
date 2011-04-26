@@ -12,6 +12,8 @@
 //  appreciated but not required.
 //
 
+#if TARGET_OS_IPHONE || TARGET_OS_SIMULATOR
+
 #import "GKDataRequest.h"
 
 #pragma mark -
@@ -397,3 +399,5 @@ xmlXPathObjectPtr xmlXPathObjectFromEvalOfQuery(NSString *query, xmlXPathContext
 }
 
 @end
+
+#endif

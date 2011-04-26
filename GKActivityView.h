@@ -6,8 +6,9 @@
 //  Copyright 2010 GK Apps. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE || TARGET_OS_SIMULATOR
 
+#import <Foundation/Foundation.h>
 
 @interface GKActivityView : UIView {
     @private
@@ -17,3 +18,5 @@
 - (void)activate;
 
 @end
+
+#endif

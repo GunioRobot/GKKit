@@ -6,6 +6,8 @@
 //  Copyright 2011 GK Apps. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE || TARGET_OS_SIMULATOR
+
 #import "GKGradientLayer.h"
 
 
@@ -29,3 +31,5 @@
 }
 
 @end
+
+#endif

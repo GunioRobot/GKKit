@@ -6,8 +6,9 @@
 //  Copyright 2010 GK Apps. All rights reserved.
 //
 
-#import "GKActivityView.h"
+#if TARGET_OS_IPHONE || TARGET_OS_SIMULATOR
 
+#import "GKActivityView.h"
 
 @implementation GKActivityView
 
@@ -35,3 +36,5 @@
 }
 
 @end
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Gaurav Khanna on 7/14/10.
 //
 
+#if TARGET_OS_IPHONE || TARGET_OS_SIMULATOR
+
 #import <Foundation/Foundation.h>
 #import <libxml/tree.h>
 #import <libxml/parser.h>
@@ -40,3 +42,5 @@ typedef void (^GKDataRequestBlock)(BOOL completion);
 - (id)attributeStringFromXPathQuery:(NSString *)query;
 
 @end
+
+#endif

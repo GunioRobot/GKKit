@@ -6,6 +6,8 @@
 //  Copyright 2011 GK Apps. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE || TARGET_OS_SIMULATOR
+
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -15,3 +17,5 @@
 }
 
 @end
+
+#endif

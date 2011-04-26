@@ -9,6 +9,8 @@
 //  _contentView in this class is where all the subviews are stored, 
 //  thus all methods utilizing subviews are manipulated
 
+#if TARGET_OS_IPHONE || TARGET_OS_SIMULATOR
+
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -18,3 +20,5 @@
 }
 
 @end
+
+#endif
