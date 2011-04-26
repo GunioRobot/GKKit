@@ -14,10 +14,16 @@
         }()
         
     #define NSDef [NSUserDefaults standardUserDefaults]
-    #define AppDelegate [[UIApplication sharedApplication] delegate]
     #define $(class) objc_getClass(#class)
+    
+    #if TARGET_OS_MAC 
+        #define AppDelegate (id)[[NSApplication sharedApplication] delegate]
+    #endif
 
     #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+    
+        #define UIApp [UIApplication sharedApplication]
+        #define AppDelegate (id)[UIApp delegte]
 
         #define UIViewFrameChangeValue( view, key, value) \
             CGRect view ## Frame = view.frame; \
