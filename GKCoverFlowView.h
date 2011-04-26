@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface GKCoverFlowView : UIView {
+@interface GKCoverFlowView : NSView {
 @private
     
 }
