@@ -1,4 +1,8 @@
 #ifdef __OBJC__
+
+    #import <objc/message.h>
+    #import <objc/runtime.h>
+    
     #define NSObjectMessageSendSuper(obj, msg, ...) \
         ^{ \
             return (id)objc_msgSendSuper(&(struct objc_super){obj, class_getSuperclass([obj class])}, @selector(msg), ## __VA_ARGS__); \
@@ -11,6 +15,7 @@
         
     #define NSDef [NSUserDefaults standardUserDefaults]
     #define AppDelegate [[UIApplication sharedApplication] delegate]
+    #define $(object) object_getClass(object);
 
     #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 
