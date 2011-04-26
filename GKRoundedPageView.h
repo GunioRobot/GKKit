@@ -15,7 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface GKRoundedPageView : UIView {
-    @protected
+@protected
     UIView *_contentView;
 }
 

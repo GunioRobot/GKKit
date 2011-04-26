@@ -13,7 +13,8 @@
 
 
 @interface GKGradientLayer : CAGradientLayer {
-    @private
+@private
+
 }
 
 @end

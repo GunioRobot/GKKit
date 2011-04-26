@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 
 @interface GKActivityView : UIView {
-    @private
+@private
     UIActivityIndicatorView *_activityView;
 }
 
