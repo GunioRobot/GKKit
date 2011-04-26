@@ -23,6 +23,7 @@
 typedef void (^GKDataRequestBlock)(BOOL completion);
 
 @interface GKDataRequest : ASIFormDataRequest <ASIHTTPRequestDelegate> {
+@private
     GKDataRequestBlock _completionBlock;
     xmlXPathContextPtr _xpathCtx;
     xmlDocPtr _xpathDoc;
