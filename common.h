@@ -15,7 +15,7 @@
         
     #define NSDef [NSUserDefaults standardUserDefaults]
     #define AppDelegate [[UIApplication sharedApplication] delegate]
-    #define $(object) object_getClass(object);
+    #define $(object) object_getClass(object)
 
     #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 
