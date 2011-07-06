@@ -44,7 +44,7 @@
 }
 
 - (NSNumber*)numberValue {
-    return [NSNumber numberFromString:self];
+    return [[[NSNumberFormatter alloc] init] numberFromString:self];
 }
 
 @end
