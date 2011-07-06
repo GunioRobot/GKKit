@@ -16,5 +16,6 @@
 - (id)decodeAllPercentEscapes;
 - (id)decodeAllAmpersandEscapes;
 - (BOOL)isEmpty;
+- (NSNumber*)numberValue;
 
 @end

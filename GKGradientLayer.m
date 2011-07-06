@@ -19,7 +19,7 @@
 		UIColor *colorOne	= [UIColor colorWithHue:0.500 saturation:0.004 brightness:0.969 alpha:1.000];
 		UIColor *colorTwo	= [UIColor colorWithHue:0.560 saturation:0.018 brightness:0.761 alpha:1.000];
 
-		NSArray *colors =  [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor, nil];		
+		NSArray *colors =  [NSArray arrayWithObjects: colorOne.CGColor, colorTwo.CGColor, nil];		
 
 		self.colors = colors;
 

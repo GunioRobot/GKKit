@@ -60,7 +60,7 @@
     // Needs to send nil back if point wasn't on a button/switch (any object userInteractionEnabled)
     // Otherwise nil to send the event to the scroll view so the pages are scrollable
     // To do this: It will recurse through all subviews in itself, find any that the point is on and have userInteractionEnabled
-    DLogObject(NSStringFromCGPoint(point));
+    //DLogObject(NSStringFromCGPoint(point));
     UIView *targetView = nil;
     
     for (UIView *subview in _contentView.subviews) {

@@ -43,4 +43,8 @@
             && ([(NSArray *)self count] == 0)));
 }
 
+- (NSNumber*)numberValue {
+    return [NSNumber numberFromString:self];
+}
+
 @end

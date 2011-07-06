@@ -23,7 +23,9 @@
     #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
     
         #define UIApp [UIApplication sharedApplication]
-        #define AppDelegate (id)[UIApp delegte]
+        #ifndef AppDelegate
+            #define AppDelegate (id)[UIApp delegte]
+        #endif
 
         #define UIViewFrameChangeValue( view, key, value) \
             CGRect view ## Frame = view.frame; \

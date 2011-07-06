@@ -6,10 +6,14 @@
 //  Copyright 2011 GK Apps. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+    #import <QuartzCore/QuartzCore.h>
+    #define GKViewController UIViewController
+#elif TARGET_OS_MAC 
+    #define GKViewController NSViewController
+#endif
 
-
-@interface GKCoverFlowController : NSViewController {
+@interface GKCoverFlowController : GKViewController {
 @private
     
 }
