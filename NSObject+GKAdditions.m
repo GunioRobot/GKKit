@@ -10,11 +10,11 @@
 @implementation NSObject (GKAdditions)
 
 + (void)scheduleRunAfterDelay:(NSTimeInterval)delay forBlock:(void (^)(void))block {
-    [[[block copy] autorelease] performSelector:@selector(performSelf) withObject:nil afterDelay:delay];
+    [[block copy] performSelector:@selector(performSelf) withObject:nil afterDelay:delay];
 }
 
 + (void)scheduleRunAfterDelay:(NSTimeInterval)delay forBlock:(void (^)(void))block completion:(void (^)(BOOL finished))completion {
-    [[[block copy] autorelease] performSelector:@selector(performSelfWithCallback:) withObject:[[completion copy] autorelease] afterDelay:delay];
+    [[block copy] performSelector:@selector(performSelfWithCallback:) withObject:[completion copy] afterDelay:delay];
 }
 
 - (void)performSelf {

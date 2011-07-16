@@ -9,7 +9,7 @@
 } \
 - (id)copy { \
 	return self; \
-} \
+}/*
 - (id)retain { \
 	return self; \
 } \
@@ -21,3 +21,4 @@
 - (id)autorelease { \
 	return self; \
 }
+*/

@@ -50,6 +50,8 @@
         #define DLogUIView(Object)      UILogViewHierarchy(Object)
         #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
             #define DLogCGRect(CGRect)  NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #CGRect, NSStringFromCGRect(CGRect))
+            #define DLogCGSize(CGSize)  NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #CGSize, NSStringFromCGSize(CGSize))
+            #define DLogCGPoint(CGPoint)    NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #CGPoint, NSStringFromCGPoint(CGPoint))
         #elif TARGET_OS_MAC 
             #define DLogCGRect(CGRect)  NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #CGRect, NSStringFromRect(NSRectFromCGRect(CGRect)))
         #endif

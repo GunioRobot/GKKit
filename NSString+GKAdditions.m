@@ -20,15 +20,16 @@
 - (id)trim {
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
-
+/*
 - (id)decodeAllPercentEscapes {
-    NSString* cfWay = (NSString*)[(NSString*)CFURLCreateStringByReplacingPercentEscapes(kCFAllocatorDefault, (CFStringRef)self, CFSTR("")) autorelease];
-    /*NSString* cocoaWay = [self stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *cocoaWay = 
+    NSString* cfWay = CFURLCreateStringByReplacingPercentEscapes(kCFAllocatorDefault, [self UTF8String], CFSTR(""));
+    NSString* cocoaWay = [self stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if(![cfWay isEqualToString:cocoaWay]) {
         NSLog(@"[%@ %s]: CF and Cocoa different for %@", [self class], sel_getName(_cmd), self);
-    }*/
+    }
     return cfWay;
-}
+}*/
 
 - (id)decodeAllAmpersandEscapes {
     return [self stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];

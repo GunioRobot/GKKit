@@ -8,7 +8,7 @@
 #if TARGET_OS_IPHONE || TARGET_OS_SIMULATOR
 
 #import <Foundation/Foundation.h>
-#import <libxml/tree.h>
+#import "libxml2/libxml/tree.h"
 #import <libxml/parser.h>
 #import <libxml/HTMLparser.h>
 #import <libxml/xpath.h>
