@@ -1,5 +1,5 @@
 #ifdef __OBJC__
-
+    #import <Foundation/Foundation.h>
     #import <objc/message.h>
     #import <objc/runtime.h>
     
