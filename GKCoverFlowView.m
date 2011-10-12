@@ -10,7 +10,7 @@
 
 @implementation GKCoverFlowView
 
-- (id)initWithFrame:(NSRect)frame {
+- (id)initWithFrame:(GKRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Initialization code here.
         
@@ -49,10 +49,11 @@
     // Drawing code here.
 }
 */
-#pragma mark - Memory Management
 
+#pragma mark - Memory Management
+#ifndef ARC_MEM_MGMT
 - (void)dealloc {
     [super dealloc];
 }
-
+#endif
 @end

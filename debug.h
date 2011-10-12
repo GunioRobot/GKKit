@@ -17,6 +17,7 @@
 
     #ifdef DLOG
         #import <Foundation/Foundation.h>
+
 #pragma mark - Object Logging Methods
 
         /*void DLog(NSString *format, ...) {
@@ -48,6 +49,8 @@
         #define DLogFLOAT(float)        NSLog(@"%s:%s:%f;", Q(DLOG_PREFIX), #float, float)
         #define DLogBOOL(BOOL)          NSLog(@"%s:%s:%s;", Q(DLOG_PREFIX), #BOOL, (BOOL ? "TRUE" : "FALSE"))
         #define DLogUIView(Object)      UILogViewHierarchy(Object)
+        #define DLogFunc()              NSLog(@"%s:%s:%d;", Q(DLOG_PREFIX), __PRETTY_FUNCTION__, __LINE__)
+
         #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
             #define DLogCGRect(CGRect)  NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #CGRect, NSStringFromCGRect(CGRect))
             #define DLogCGSize(CGSize)  NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #CGSize, NSStringFromCGSize(CGSize))
@@ -55,7 +58,14 @@
         #elif TARGET_OS_MAC 
             #define DLogCGRect(CGRect)  NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #CGRect, NSStringFromRect(NSRectFromCGRect(CGRect)))
         #endif
-        #define DLogFunc()              NSLog(@"%s:%s:%d;", Q(DLOG_PREFIX), __PRETTY_FUNCTION__, __LINE__)
+
+#pragma mark - Time Logging
+
+        #define DStart(key)             NSDate *__dTime ## key = [NSDate date]
+        #define DEnd(key)               NSTimeInterval __dInterval ## key = [__dTime ## key timeIntervalSinceNow]; \
+                                        NSLog(@"%s:%s:%f;", Q(DLOG_PREFIX), #key, -(__dInterval ## key))
+        #define DEndMod(key, mod)       NSTimeInterval __dInterval ## key = [__dTime ## key timeIntervalSinceNow]; \
+                                        NSLog(@"%s:%s:%f;", Q(DLOG_PREFIX), #key, (-(__dInterval ## key))-mod)
         
 #pragma mark - Class Method Logging
         
@@ -164,5 +174,8 @@
         #define DLogMethod3(object, object1, object2, object3)
         #define DLogvoid()
         #define DLogid()
+        #define DStart(obj)
+        #define DEnd(obj)
+        #define DEndMod(obj, object)
     #endif
 #endif

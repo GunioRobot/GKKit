@@ -5,7 +5,7 @@
 //  Created by Gaurav Khanna on 7/14/10.
 //
 
-#if TARGET_OS_IPHONE || TARGET_OS_SIMULATOR
+#if IPHONE_ONLY
 
 #import <Foundation/Foundation.h>
 #import "libxml2/libxml/tree.h"

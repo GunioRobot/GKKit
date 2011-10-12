@@ -3,7 +3,7 @@
 //  GKKit
 //
 //  Created by Matt Gallagher on 4/08/08. (XPath Query Functions) 
-//  Created by Gaurav Khanna on 7/14/10 (class implementation)  
+//  Modified by Gaurav Khanna on 7/14/10 (cocoa class wrapper implementation)  
 //
 //  Permission is given to use this source code file, free of charge, in any
 //  project, commercial or otherwise, entirely at your risk, with the condition
@@ -12,12 +12,17 @@
 //  appreciated but not required.
 //
 
-#if TARGET_OS_IPHONE || TARGET_OS_SIMULATOR
+#if IPHONE_ONLY
 
 #import "GKDataRequest.h"
 
-#pragma mark -
-#pragma mark XPath Query Functions
+#pragma mark - XPath Query Functions
+
+NSDictionary *DictionaryForNode(xmlNodePtr currentNode, NSMutableDictionary *parentResult);
+NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query);
+NSArray *PerformHTMLXPathQuery(NSData *document, NSString *query);
+NSArray *PerformXMLXPathQuery(NSData *document, NSString *query);
+NSString *PerformHTMLXPathExtraction(NSData *document, NSString *query);
 
 NSDictionary *DictionaryForNode(xmlNodePtr currentNode, NSMutableDictionary *parentResult) {
 	NSMutableDictionary *resultForNode = [NSMutableDictionary dictionary];
@@ -98,8 +103,7 @@ NSDictionary *DictionaryForNode(xmlNodePtr currentNode, NSMutableDictionary *par
 	return resultForNode;
 }
 
-NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
-{
+NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query) {
     xmlXPathContextPtr xpathCtx; 
     xmlXPathObjectPtr xpathObj; 
     
@@ -248,8 +252,7 @@ NSString *PerformHTMLXPathExtraction(NSData *document, NSString *query) {
     [self startAsynchronous];
 }
 
-#pragma mark -
-#pragma mark ASIHTTPRequest Delegate methods
+#pragma mark - ASIHTTPRequest Delegate methods
 
 // These are the default delegate methods for request status
 // You can use different ones by setting didStartSelector / didFinishSelector / didFailSelector
@@ -300,8 +303,7 @@ NSString *PerformHTMLXPathExtraction(NSData *document, NSString *query) {
 }
 
 
-#pragma mark -
-#pragma mark XPathAdditions
+#pragma mark - XPathAdditions
 
 xmlXPathObjectPtr xmlXPathObjectFromEvalOfQuery(NSString *query, xmlXPathContextPtr ctx) {
     xmlXPathObjectPtr xpathObj = xmlXPathEvalExpression((xmlChar *)[query cStringUsingEncoding:NSUTF8StringEncoding], ctx);
@@ -388,16 +390,16 @@ xmlXPathObjectPtr xmlXPathObjectFromEvalOfQuery(NSString *query, xmlXPathContext
     return nil;
 }
 
-#pragma mark -
-#pragma mark Memory Management
+#pragma mark - Memory Management
 
+#ifndef ARC_MEM_MGMT
 - (void)dealloc {
     xmlXPathFreeContext(_xpathCtx);
     xmlFreeDoc(_xpathDoc);
     [_completionBlock release];
     [super dealloc];
 }
-
+#endif
 @end
 
 #endif

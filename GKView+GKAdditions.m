@@ -13,11 +13,9 @@
     NSLog(@"%@%@%@",(indent?indent:@""),(prefix?prefix:@""),[view hierarchalDescription]);
     int i = 0;
     for(GKView *subview in view.subviews) {
-        NSString *newIndent = [[NSString alloc] initWithFormat:@"  %@", indent];
-        NSString *newPrefix = [[NSString alloc] initWithFormat:@"%@%d:", newIndent, i++];
+        NSString *newIndent = [NSString stringWithFormat:@"  %@", indent];
+        NSString *newPrefix = [NSString stringWithFormat:@"%@%d:", newIndent, i++];
         [GKView dumpView:subview prefix:newPrefix indent:newIndent];
-        [newIndent release];
-        [newPrefix release];
     }
 }
 
@@ -44,7 +42,7 @@
 
 @end
 
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#if IPHONE_ONLY
 @implementation UIImageView (GKAdditions)
 
 - (id)initWithView:(UIView *)view origin:(CGPoint)origin {

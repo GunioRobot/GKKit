@@ -7,14 +7,13 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface NSString (GKAdditions)
 
 - (unichar)lastCharacter;
-- (id)substringToLastCharacter;
-- (id)trim;
-- (id)decodeAllPercentEscapes;
-- (id)decodeAllAmpersandEscapes;
+- (NSString*)substringToLastCharacter;
+- (NSString*)trim;
+//- (NSString*)decodeAllPercentEscapes;
+- (NSString*)decodeAllAmpersandEscapes;
 - (BOOL)isEmpty;
 - (NSNumber*)numberValue;
 

@@ -13,11 +13,11 @@
     return [self characterAtIndex:([self length] - 1)];
 }
 
-- (id)substringToLastCharacter {
+- (NSString*)substringToLastCharacter {
     return [self substringToIndex:([self length] - 1)];
 }
 
-- (id)trim {
+- (NSString*)trim {
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 /*
@@ -31,7 +31,7 @@
     return cfWay;
 }*/
 
-- (id)decodeAllAmpersandEscapes {
+- (NSString*)decodeAllAmpersandEscapes {
     return [self stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
 }
 

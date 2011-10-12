@@ -25,7 +25,9 @@ typedef enum {
         _activityView.hidesWhenStopped = TRUE;
         [_activityView stopAnimating];
         [_searchLoadingView addSubview:_activityView];
+#ifndef ARC_MEM_MGMT
         [_activityView release];
+#endif
         
         controller.delegate = self;
         controller.searchBar.delegate = self;
@@ -109,15 +111,14 @@ typedef enum {
         _searchLoadingView.hidden = FALSE;
 }
 
-#pragma mark -
-#pragma mark Memory Management
-
+#pragma mark - Memory Management
+#ifndef ARC_MEM_MGMT
 - (void)dealloc {
     [_searchLoadingView release];
     [_activityView release];
     [super dealloc];
 }
-
+#endif
 
 @end
 

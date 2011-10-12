@@ -6,7 +6,7 @@
 //  Copyright 2011 GK Apps. All rights reserved.
 //
 
-#if TARGET_OS_IPHONE || TARGET_OS_SIMULATOR
+#if IPHONE_ONLY
 
 #import "GKRoundedPageView.h"
 
@@ -103,12 +103,12 @@
     // Drawing code
 }
 */
-
+#ifndef ARC_MEM_MGMT
 - (void)dealloc {
     [_contentView release];
     [super dealloc];
 }
-
+#endif
 @end
 
 #endif

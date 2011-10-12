@@ -3,6 +3,7 @@
     #import <objc/message.h>
     #import <objc/runtime.h>
     
+    // TODO: Test & Fix
     #define NSObjectMessageSendSuper(obj, msg, ...) \
         ^{ \
             return (id)objc_msgSendSuper(&(struct objc_super){obj, class_getSuperclass([obj class])}, @selector(msg), ## __VA_ARGS__); \
@@ -15,18 +16,48 @@
         
     #define NSDef [NSUserDefaults standardUserDefaults]
     #define $(class) objc_getClass(#class)
-    
-    #if TARGET_OS_MAC 
-        #define AppDelegate (id)[[NSApplication sharedApplication] delegate]
+    #define ARC_MEM_MGMT __has_feature(objc_arc)
+    #if __has_feature(objc_arc)
+        #define ARC_STRONG strong
+    #else
+        #define ARC_STRONG assign
     #endif
 
-    #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+    #if TARGET_OS_MAC && !(TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+        #define MAC_ONLY 1
+    #elif TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+        #define IPHONE_ONLY 1
+    #endif
     
-        #define UIApp [UIApplication sharedApplication]
-        #ifndef AppDelegate
-            #define AppDelegate (id)[UIApp delegte]
+    #ifdef MAC_ONLY
+        #ifndef NSApp
+            #define NSApp [NSApplication sharedApplication]
         #endif
-
+        #ifndef NSAppDelegate
+            #define NSAppDelegate (id)[[NSApplication sharedApplication] delegate]
+        #endif
+        #define GKApp [NSApplication sharedApplication]
+        #ifndef GKView
+            #define GKView NSView
+        #endif
+        #ifndef GKRect
+            #define GKRect NSRect
+        #endif
+    #elif IPHONE_ONLY
+        #import <QuartzCore/QuartzCore.h>
+        #ifndef UIApp
+            #define UIApp [UIApplication sharedApplication]
+        #endif
+        #ifndef UIAppDelegate
+            #define UIAppDelegate (id)[UIApp delegte]
+        #endif
+        #ifndef GKView 
+            #define GKView UIView
+        #endif
+        #ifndef GKRect
+            #define GKRect CGRect
+        #endif
+        
         #define UIViewFrameChangeValue( view, key, value) \
             CGRect view ## Frame = view.frame; \
             view ## Frame.key = value; \

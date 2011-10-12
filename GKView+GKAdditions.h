@@ -6,27 +6,33 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "common.h"
 
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-    #import <QuartzCore/QuartzCore.h>
-    #define GKView UIView
-#elif TARGET_OS_MAC 
-    #define GKView NSView
-#endif
+#if MAC_ONLY
 
-@interface GKView (GKAdditions)
+@interface NSView (GKAdditions)
 
-+ (void)dumpView:(GKView *)view prefix:(NSString *)prefix indent:(NSString *)indent;
++ (void)dumpView:(NSView *)view prefix:(NSString *)prefix indent:(NSString *)indent;
 - (void)dump;
 - (NSString *)hierarchalDescription;
 
 @end
 
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#elif IPHONE_ONLY
+
+@interface UIView (GKAdditions)
+
++ (void)dumpView:(UIView *)view prefix:(NSString *)prefix indent:(NSString *)indent;
+- (void)dump;
+- (NSString *)hierarchalDescription;
+
+@end
+
 @interface UIImageView (GKAdditions)
 
 - (id)initWithView:(UIView *)view origin:(CGPoint)origin;
 
 @end
+
 #endif
 

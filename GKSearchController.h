@@ -20,9 +20,9 @@
     id _delegate;
 }
 
-@property(nonatomic, assign) id delegate;
-@property(nonatomic, assign) UISearchDisplayController *controller;
-@property(nonatomic, assign) UIView *controlledView;
+@property (nonatomic, ARC_STRONG) id delegate;
+@property (nonatomic, ARC_STRONG) UISearchDisplayController *controller;
+@property (nonatomic, ARC_STRONG) UIView *controlledView;
 
 - (id)initWithSearchDisplayController:(UISearchDisplayController *)controller controlledView:(UIView *)view;
 - (void)readyToDisplayResults;

@@ -18,7 +18,6 @@
         _activityView.hidesWhenStopped = TRUE;
         [_activityView stopAnimating];
         [self addSubview:_activityView];
-        [_activityView release];
     }
     return self;
 }
@@ -28,11 +27,6 @@
     _activityView.center = self.center;
     UIViewFrameChangeValue(_activityView, origin.y, 11.0);
     [_activityView startAnimating];
-}
-
-- (void)dealloc {
-    [_activityView release];
-    [super dealloc];
 }
 
 @end
