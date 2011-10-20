@@ -16,11 +16,13 @@
         
     #define NSDef [NSUserDefaults standardUserDefaults]
     #define $(class) objc_getClass(#class)
-    #define ARC_MEM_MGMT __has_feature(objc_arc)
-    #if __has_feature(objc_arc)
-        #define ARC_STRONG strong
+    #define OBJC_ARC __has_feature(objc_arc)
+    #if OBJC_ARC
+        #define STRONG strong
+        #define WEAK weak
     #else
-        #define ARC_STRONG assign
+        #define STRONG retain
+        #define WEAK assign
     #endif
 
     #if TARGET_OS_MAC && !(TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
@@ -49,7 +51,7 @@
             #define UIApp [UIApplication sharedApplication]
         #endif
         #ifndef UIAppDelegate
-            #define UIAppDelegate (id)[UIApp delegte]
+            #define UIAppDelegate [UIApp delegate]
         #endif
         #ifndef GKView 
             #define GKView UIView

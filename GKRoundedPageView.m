@@ -103,7 +103,7 @@
     // Drawing code
 }
 */
-#ifndef ARC_MEM_MGMT
+#if !OBJC_ARC
 - (void)dealloc {
     [_contentView release];
     [super dealloc];

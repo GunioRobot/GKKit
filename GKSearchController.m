@@ -25,7 +25,7 @@ typedef enum {
         _activityView.hidesWhenStopped = TRUE;
         [_activityView stopAnimating];
         [_searchLoadingView addSubview:_activityView];
-#ifndef ARC_MEM_MGMT
+#if !OBJC_ARC
         [_activityView release];
 #endif
         
@@ -112,7 +112,7 @@ typedef enum {
 }
 
 #pragma mark - Memory Management
-#ifndef ARC_MEM_MGMT
+#if !OBJC_ARC
 - (void)dealloc {
     [_searchLoadingView release];
     [_activityView release];

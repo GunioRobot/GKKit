@@ -51,7 +51,7 @@
 */
 
 #pragma mark - Memory Management
-#ifndef ARC_MEM_MGMT
+#if !OBJC_ARC
 - (void)dealloc {
     [super dealloc];
 }
