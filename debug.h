@@ -1,11 +1,14 @@
 #ifdef __OBJC__
 
-    #ifdef __DEBUG__
+    #ifdef __DEBUG__ 
         #ifndef DEBUG
             #define DEBUG
         #endif
-        #ifndef DLOG
-            #define DLOG
+    #endif
+
+    #if DEBUG
+        #ifndef DEBUG
+            #define DEBUG
         #endif
     #endif
 
@@ -37,35 +40,38 @@
         
         #define Q_(x) #x
         #define Q(x) Q_(x)
-    
-        #define DLog(format, ...)       NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), [NSString stringWithFormat:[@" " stringByAppendingString:format], ## __VA_ARGS__ ])
-        #define DLogObject(Object)      NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #Object , Object)
-        #define DLogNSObject(NSObject)  NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #NSObject , NSObject)
-        #define DLogClass(Class)        NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #Class, [NSString stringWithUTF8String:(class_getName(Class))])
-        #define DLogSEL(SEL)            NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #SEL, NSStringFromSelector(SEL))
-        #define DLogRetain(Object)      NSLog(@"%s:%s:RET:%i;%s:%d", Q(DLOG_PREFIX), #Object, [Object retainCount], __PRETTY_FUNCTION__, __LINE__)
-        #define DLogCFRetain(CFObject)  NSLog(@"%s:%s:RET:%i;", Q(DLOG_PREFIX), #CFObject, CFGetRetainCount(CFObject))
-        #define DLogINT(int)            NSLog(@"%s:%s:%i;", Q(DLOG_PREFIX), #int, int)
-        #define DLogFLOAT(float)        NSLog(@"%s:%s:%f;", Q(DLOG_PREFIX), #float, float)
-        #define DLogBOOL(BOOL)          NSLog(@"%s:%s:%s;", Q(DLOG_PREFIX), #BOOL, (BOOL ? "TRUE" : "FALSE"))
+
+// TODO: Consolidate all of these NSLog methods to eliminate boilerplate/repeat info
+        #define DLog(format, ...)       NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), [NSString stringWithFormat:[@" " stringByAppendingString:format], ## __VA_ARGS__ ])
+        #define DLogObject(Object)      NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), #Object , Object)
+        #define DLogNSObject(NSObject)  NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), #NSObject , NSObject)
+        #define DLogClass(Class)        NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), #Class, [NSString stringWithUTF8String:(class_getName(Class))])
+        #define DLogSEL(SEL)            NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), #SEL, NSStringFromSelector(SEL))
+        #define DLogRetain(Object)      NSLog(@"%s:%s;RET:%i;%s:%d", Q(DLOG_PREFIX), #Object, [Object retainCount], __PRETTY_FUNCTION__, __LINE__)
+        #define DLogCFRetain(CFObject)  NSLog(@"%s:%s;RET:%i;", Q(DLOG_PREFIX), #CFObject, CFGetRetainCount(CFObject))
+        #define DLogINT(int)            NSLog(@"%s:%s;%i;", Q(DLOG_PREFIX), #int, int)
+        #define DLogFLOAT(float)        NSLog(@"%s:%s;%f;", Q(DLOG_PREFIX), #float, float)
+        #define DLogBOOL(BOOL)          NSLog(@"%s:%s;%s;", Q(DLOG_PREFIX), #BOOL, (BOOL ? "YES" : "NO"))
         #define DLogUIView(Object)      UILogViewHierarchy(Object)
-        #define DLogFunc()              NSLog(@"%s:%s:%d;", Q(DLOG_PREFIX), __PRETTY_FUNCTION__, __LINE__)
+        #define DLogFunc()              NSLog(@"%s:%s;%d;", Q(DLOG_PREFIX), __PRETTY_FUNCTION__, __LINE__)
 
         #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-            #define DLogCGRect(CGRect)  NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #CGRect, NSStringFromCGRect(CGRect))
-            #define DLogCGSize(CGSize)  NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #CGSize, NSStringFromCGSize(CGSize))
-            #define DLogCGPoint(CGPoint)    NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #CGPoint, NSStringFromCGPoint(CGPoint))
+            #define DLogCGRect(CGRect)  NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), #CGRect, NSStringFromCGRect(CGRect))
+            #define DLogCGSize(CGSize)  NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), #CGSize, NSStringFromCGSize(CGSize))
+            #define DLogCGPoint(CGPoint)    NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), #CGPoint, NSStringFromCGPoint(CGPoint))
         #elif TARGET_OS_MAC 
-            #define DLogCGRect(CGRect)  NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #CGRect, NSStringFromRect(NSRectFromCGRect(CGRect)))
+            #define DLogCGRect(CGRect)  NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), #CGRect, NSStringFromRect(NSRectFromCGRect(CGRect)))
         #endif
 
 #pragma mark - Time Logging
 
         #define DStart(key)             NSDate *__dTime ## key = [NSDate date]
         #define DEnd(key)               NSTimeInterval __dInterval ## key = [__dTime ## key timeIntervalSinceNow]; \
-                                        NSLog(@"%s:%s:%f;", Q(DLOG_PREFIX), #key, -(__dInterval ## key))
+                                        NSLog(@"%s:%s;%f;", Q(DLOG_PREFIX), #key, -(__dInterval ## key))
         #define DEndMod(key, mod)       NSTimeInterval __dInterval ## key = [__dTime ## key timeIntervalSinceNow]; \
-                                        NSLog(@"%s:%s:%f;", Q(DLOG_PREFIX), #key, (-(__dInterval ## key))-mod)
+                                        NSLog(@"%s:%s;%f;", Q(DLOG_PREFIX), #key, (-(__dInterval ## key))-mod)
+#pragma mark - Thread Logging
+        #define DLogThread()            NSLog(@"%s:%s;%d:main=%s;", Q(DLOG_PREFIX), __PRETTY_FUNCTION__, __LINE__, ([NSThread isMainThread]?"YES":"NO")
         
 #pragma mark - Class Method Logging
         
