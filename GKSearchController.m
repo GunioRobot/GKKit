@@ -28,10 +28,10 @@ typedef enum {
 #if !OBJC_ARC
         [_activityView release];
 #endif
-        
+
         controller.delegate = self;
         controller.searchBar.delegate = self;
-        
+
         self.controller = controller;
         self.controlledView = view;
     }
@@ -46,7 +46,7 @@ typedef enum {
             UIViewFrameChangeValue(_activityView, origin.y, 11.0);
             [_activityView startAnimating];
             break;
-            
+
         case GKSearchDisplayStateSearching:
             [_activityView stopAnimating];
             _searchLoadingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.8];
@@ -97,7 +97,7 @@ typedef enum {
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     if(_searchLoadingView.superview) {
-        [_searchLoadingView removeFromSuperview]; 
+        [_searchLoadingView removeFromSuperview];
         [NSObject scheduleRunAfterDelay:1.0 forBlock:^{
             self.controller.searchResultsTableView.hidden = FALSE;
         }];

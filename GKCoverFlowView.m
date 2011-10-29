@@ -13,7 +13,7 @@
 - (id)initWithFrame:(GKRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Initialization code here.
-        
+
     }
     return self;
 }
@@ -21,15 +21,15 @@
 #pragma mark - Touch Methods
 /*
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
+
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    
+
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    
+
 }
 */
 

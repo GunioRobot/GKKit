@@ -10,7 +10,7 @@
 
 @interface GKCoverFlowView : GKView {
 @private
-    
+
 }
 
 @end

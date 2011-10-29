@@ -13,7 +13,7 @@
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDate *today = [cal dateFromComponents:[cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:[NSDate date]]];
     NSDate *selfDay = [cal dateFromComponents:[cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:self]];
-    
+
     return [today isEqualToDate:selfDay];
 }
 

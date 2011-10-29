@@ -9,13 +9,13 @@
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
     #import <QuartzCore/QuartzCore.h>
     #define GKViewController UIViewController
-#elif TARGET_OS_MAC 
+#elif TARGET_OS_MAC
     #define GKViewController NSViewController
 #endif
 
 @interface GKCoverFlowController : GKViewController {
 @private
-    
+
 }
 
 

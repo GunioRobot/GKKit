@@ -6,7 +6,7 @@
 //  Copyright 2011 GK Apps. All rights reserved.
 //
 
-//  _contentView in this class is where all the subviews are stored, 
+//  _contentView in this class is where all the subviews are stored,
 //  thus all methods utilizing subviews are manipulated
 
 #if IPHONE_ONLY

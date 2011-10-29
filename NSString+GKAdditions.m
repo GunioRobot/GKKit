@@ -22,7 +22,7 @@
 }
 /*
 - (id)decodeAllPercentEscapes {
-    NSString *cocoaWay = 
+    NSString *cocoaWay =
     NSString* cfWay = CFURLCreateStringByReplacingPercentEscapes(kCFAllocatorDefault, [self UTF8String], CFSTR(""));
     NSString* cocoaWay = [self stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if(![cfWay isEqualToString:cocoaWay]) {

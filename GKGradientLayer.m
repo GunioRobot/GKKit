@@ -19,7 +19,7 @@
 		CGColorRef color1	= [UIColor colorWithHue:0.500 saturation:0.004 brightness:0.969 alpha:1.000].CGColor;
 		CGColorRef color2	= [UIColor colorWithHue:0.560 saturation:0.018 brightness:0.761 alpha:1.000].CGColor;
 
-		NSArray *colors =  [NSArray arrayWithObjects: (__bridge_transfer id)color1, (__bridge_transfer id)color2, nil];		
+		NSArray *colors =  [NSArray arrayWithObjects: (__bridge_transfer id)color1, (__bridge_transfer id)color2, nil];
 
 		self.colors = colors;
 

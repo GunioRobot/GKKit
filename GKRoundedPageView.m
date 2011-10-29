@@ -29,16 +29,16 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Initialization code
-        
+
         self.clipsToBounds = NO;
         self.layer.cornerRadius = 10.0;
         self.layer.masksToBounds = YES;
-        
+
         self.layer.shadowOffset = CGSizeMake(0, 0);
         self.layer.shadowRadius = 5;
         self.layer.shadowOpacity = 0.7;
         self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.layer.cornerRadius].CGPath;
-        
+
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.bounds.size.width, self.bounds.size.height)];
         _contentView.clipsToBounds = YES;
         _contentView.layer.masksToBounds = YES;
@@ -46,11 +46,11 @@
         //_contentView.userInteractionEnabled = NO;
         //self.userInteractionEnabled = NO;
         //_contentView.backgroundColor = [UIColor whiteColor];
-        
+
 
         [self addSubview:_contentView];
         [self bringSubviewToFront:_contentView];
-        
+
         [self layoutIfNeeded];
     }
     return self;
@@ -62,7 +62,7 @@
     // To do this: It will recurse through all subviews in itself, find any that the point is on and have userInteractionEnabled
     //DLogObject(NSStringFromCGPoint(point));
     UIView *targetView = nil;
-    
+
     for (UIView *subview in _contentView.subviews) {
         if ([subview pointInside:[self convertPoint:point toView:subview] withEvent:event]) {
             // "subview" here is going to be something like the PageHeaderView Object

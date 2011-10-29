@@ -1,6 +1,6 @@
 #ifdef __OBJC__
 
-    #ifdef __DEBUG__ 
+    #ifdef __DEBUG__
         #ifndef DEBUG
             #define DEBUG
         #endif
@@ -33,11 +33,11 @@
             fprintf(stderr,"%s",[body UTF8String]);
             [body release];
         }*/
-        
+
         #ifndef DLOG_PREFIX
             #define DLOG_PREFIX DL
         #endif
-        
+
         #define Q_(x) #x
         #define Q(x) Q_(x)
 
@@ -59,7 +59,7 @@
             #define DLogCGRect(CGRect)  NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), #CGRect, NSStringFromCGRect(CGRect))
             #define DLogCGSize(CGSize)  NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), #CGSize, NSStringFromCGSize(CGSize))
             #define DLogCGPoint(CGPoint)    NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), #CGPoint, NSStringFromCGPoint(CGPoint))
-        #elif TARGET_OS_MAC 
+        #elif TARGET_OS_MAC
             #define DLogCGRect(CGRect)  NSLog(@"%s:%s;%@;", Q(DLOG_PREFIX), #CGRect, NSStringFromRect(NSRectFromCGRect(CGRect)))
         #endif
 
@@ -72,14 +72,14 @@
                                         NSLog(@"%s:%s;%f;", Q(DLOG_PREFIX), #key, (-(__dInterval ## key))-mod)
 #pragma mark - Thread Logging
         #define DLogThread()            NSLog(@"%s:%s;%d:main=%s;", Q(DLOG_PREFIX), __PRETTY_FUNCTION__, __LINE__, ([NSThread isMainThread]?"YES":"NO")
-        
+
 #pragma mark - Class Method Logging
-        
+
         #define DLogvoid()
         #define DLogid(Object)      NSLog(@"%s:%s:%@;", Q(DLOG_PREFIX), #Object , Object)
         #define DLogdouble(double)  NSLog(@"%s:%s:%f;", Q(DLOG_PREFIX), #double, double)
         #define DLogint(int)        NSLog(@"%s:%s:%i;", Q(DLOG_PREFIX), #int, int)
-        
+
         #define DLogMethodv0(selName) \
             - (void)selName { \
                 DLogFunc(); \
@@ -163,11 +163,11 @@
                 return retVar; \
             }
     #else
-        #define DLog(format, ...) 
+        #define DLog(format, ...)
         #define DLogObject(object)
-        #define DLogClass(object) 
-        #define DLogSEL(object) 
-        #define DLogRetain(object) 
+        #define DLogClass(object)
+        #define DLogSEL(object)
+        #define DLogRetain(object)
         #define DLogCFRetain(object)
         #define DLogINT(object)
         #define DLogBOOL(object)

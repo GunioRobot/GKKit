@@ -51,7 +51,7 @@
         [view.layer renderInContext:UIGraphicsGetCurrentContext()];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        
+
         [self setFrame:CGRectMake(origin.x, origin.y, image.size.width, image.size.height)];
         [self setImage:image];
     }

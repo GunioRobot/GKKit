@@ -24,9 +24,9 @@
 ## Declare this method to receive editing messages
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     if (editing) {
-    
+
     } else {
-    
+
     }
 }
 

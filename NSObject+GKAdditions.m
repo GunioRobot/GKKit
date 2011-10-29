@@ -24,7 +24,7 @@
 
 - (void)performSelfWithCallback:(id)callback {
     // Add proper completion testing
-    
+
     void (^block)(void) = (id)self;
     block();
     void (^completion)(BOOL finished) = (id)callback;
